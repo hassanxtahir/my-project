@@ -14,8 +14,11 @@
     font-family: Arial, sans-serif;
 }
 
+/* To use your own image:
+1. Add your image to the project folder (e.g., 'background.jpg')
+2. Update the url below to match your image filename */
 body {
-    background: url('https://source.unsplash.com/1600x900/?real-estate,houses') no-repeat center center fixed;
+    background: url('background.jpeg') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -37,7 +40,7 @@ body::before {
 .chat-container {
     width: 90%;
     max-width: 800px;
-    background-color: var(--surface);
+    background: linear-gradient(145deg, var(--surface) 0%, #3a3a3a 100%);
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -45,6 +48,7 @@ body::before {
     height: 80vh;
     position: relative;
     z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .chat-header {
@@ -56,6 +60,35 @@ body::before {
 .chat-header h1 {
     font-size: 24px;
     color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.chat-header h1::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%230084ff"><path d="M19 4H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H5V8h14v10z"/><path d="M7 10h10v2H7zm0 4h7v2H7z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#sendButton {
+    padding: 12px 24px;
+    background-color: var(--primary);
+    color: var(--text);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+#sendButton:hover {
+    background-color: #0073e6;
 }
 
 .chat-history {
@@ -131,6 +164,19 @@ body::before {
 
 #sendButton:hover {
     background-color: #0073e6;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 132, 255, 0.3);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message {
+    display: flex;
+    margin-bottom: 10px;
+    animation: fadeIn 0.3s ease-out;
 }
 
 #sendButton:disabled {
